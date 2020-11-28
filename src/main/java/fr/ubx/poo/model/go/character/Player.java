@@ -45,6 +45,7 @@ public class Player extends GameObject implements Movable {
     }
 
     public void doMove(Direction direction) {
+  
         Position nextPos = direction.nextPosition(getPosition());
         setPosition(nextPos);
     }
