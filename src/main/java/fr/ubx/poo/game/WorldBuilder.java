@@ -4,6 +4,7 @@ import fr.ubx.poo.model.decor.Decor;
 import fr.ubx.poo.model.decor.Stone;
 import fr.ubx.poo.model.decor.Tree;
 
+import fr.ubx.poo.model.decor.Box;
 import fr.ubx.poo.model.decor.Princess;
 
 import java.util.Hashtable;
@@ -36,6 +37,8 @@ public class WorldBuilder {
                 return new Tree();
             case Princess:
                 return new Princess();
+            case Box:
+                return new Box();
             default:
                 return null;
         }

@@ -10,6 +10,7 @@ import fr.ubx.poo.game.Position;
 import fr.ubx.poo.model.decor.Decor;
 import fr.ubx.poo.model.decor.Stone;
 import fr.ubx.poo.model.decor.Tree;
+import fr.ubx.poo.model.decor.Box;
 
 import fr.ubx.poo.model.decor.Princess;
 
@@ -28,6 +29,8 @@ public final class SpriteFactory {
             return new SpriteDecor(layer, factory.get(TREE), position);
         if (decor instanceof Princess)
             return new SpriteDecor(layer, factory.get(PRINCESS), position);
+        if (decor instanceof Box)
+            return new SpriteDecor(layer, factory.get(BOX), position);
         throw new RuntimeException("Unsupported sprite for decor " + decor);
     }
 

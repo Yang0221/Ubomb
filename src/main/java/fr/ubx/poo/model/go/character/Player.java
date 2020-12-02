@@ -10,6 +10,11 @@ import fr.ubx.poo.model.Movable;
 import fr.ubx.poo.model.go.GameObject;
 import fr.ubx.poo.game.Game;
 
+import fr.ubx.poo.model.decor.Decor;
+//import fr.ubx.poo.modle.decor.Box;
+import fr.ubx.poo.model.decor.Tree;
+import fr.ubx.poo.model.decor.Stone;
+
 public class Player extends GameObject implements Movable {
 
     private final boolean alive = true;
@@ -41,6 +46,10 @@ public class Player extends GameObject implements Movable {
 
     @Override
     public boolean canMove(Direction direction) {
+        Position nextPos = direction.nextPosition(getPosition());
+        Decor decor=super.game.getWorld().get(nextPos);
+        if (decor instanceof Stone || decor instanceof Tree)
+            return false;
         return true;
     }
 
