@@ -50,6 +50,8 @@ public class Player extends GameObject implements Movable {
         Decor decor=super.game.getWorld().get(nextPos);
         if (decor instanceof Stone || decor instanceof Tree)
             return false;
+        if (!nextPos.inside(game.getWorld().dimension))
+            return false;
         return true;
     }
 
