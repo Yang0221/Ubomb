@@ -11,12 +11,14 @@ import fr.ubx.poo.model.Entity;
  */
 public abstract class Decor extends Entity {  
     
-    protected abstract boolean isObstacle();
-    
-    public boolean take() {
-		return isObstacle();
-	}
-
-    
+  protected abstract boolean isBox();
+  protected abstract boolean isCoeur();
+  
+  public boolean y_box() {
+		return isBox();
+  }
+  public boolean y_coeur(){
+    return isCoeur();
+  }
 
 }

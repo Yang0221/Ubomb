@@ -6,9 +6,11 @@ public class Box extends Decor {
     public String toString() {
         return "Box";
     }
-    
-	protected boolean isObstacle() {
-		return true;
-	}
+    public boolean isBox(){
+        return true;
+    }
+    protected boolean isCoeur(){
+        return false;
+    }
     
 }

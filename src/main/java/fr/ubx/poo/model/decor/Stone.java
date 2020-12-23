@@ -9,8 +9,11 @@ public class Stone extends Decor {
     public String toString() {
         return "Stone";
     }
+    protected boolean isBox(){
+        return false;
+    }
+    protected boolean isCoeur(){
+        return false;
+    }
 
-	protected boolean isObstacle() {
-		return true;
-	}
 }

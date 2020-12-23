@@ -6,8 +6,11 @@ public class Princess extends Decor {
     public String toString() {
         return "Princess";
     }
-  
-	protected boolean isObstacle() {
-		return true;
-	}
+    protected boolean isBox(){
+        return false;
+    }
+    protected boolean isCoeur(){
+        return false;
+    }
+
 }

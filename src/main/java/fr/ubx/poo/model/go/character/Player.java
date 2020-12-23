@@ -9,18 +9,20 @@ import fr.ubx.poo.game.Position;
 import fr.ubx.poo.model.Movable;
 import fr.ubx.poo.model.go.GameObject;
 import fr.ubx.poo.game.Game;
+import fr.ubx.poo.game.World;
 
 import fr.ubx.poo.model.decor.Decor;
-//import fr.ubx.poo.modle.decor.Box;
+import fr.ubx.poo.model.decor.Box;
 import fr.ubx.poo.model.decor.Tree;
 import fr.ubx.poo.model.decor.Stone;
+import fr.ubx.poo.model.decor.Heart;
 
 public class Player extends GameObject implements Movable {
 
-    private final boolean alive = true;
+	private final boolean alive = true;
     Direction direction;
     private boolean moveRequested = false;
-    private int lives = 1;
+    private int lives = 3;
     private boolean winner;
 
     public Player(Game game, Position position) {
@@ -36,6 +38,15 @@ public class Player extends GameObject implements Movable {
     public Direction getDirection() {
         return direction;
     }
+    
+    public void addLives(){
+        this.lives += 1 ;
+    }
+
+    public void removeLives(){
+        this.lives -= 1 ;
+    } 
+
 
     public void requestMove(Direction direction) {
         if (direction != this.direction) {
@@ -47,15 +58,28 @@ public class Player extends GameObject implements Movable {
     @Override
     public boolean canMove(Direction direction) {
         Position nextPos = direction.nextPosition(getPosition());
-        
-       if(nextPos.inside(game.getWorld().dimension)){
+        Position boxPos= direction.nextPosition(nextPos);
+        if(nextPos.inside(game.getWorld().dimension)){
             Decor decor=game.getWorld().get(nextPos);
-            if(decor == null )
+            Decor boxNext=game.getWorld().get(boxPos);
+            if(decor == null )//si la case nextPos est vide
                 return true;
-            return !decor.take();
-            
-        
-       }
+            else if(decor.y_coeur()){ //si nextPos est coeur  
+                addLives();  //ajout un live
+                game.getWorld().clear(nextPos);  //supprime coeur
+                game.getWorld().setchanged(true);  //recharge  world
+                return true;
+            }
+            else if(decor.y_box() && boxPos.inside(game.getWorld().dimension) && boxNext==null){
+                //si nextPos est box  et  la case d'après nextPos  est vide et inside de world 
+                    game.getWorld().clear(nextPos);
+                    game.getWorld().set(boxPos,new Box());
+                    game.getWorld().setchanged(true);
+                    return true;
+            }
+            else
+                return false;
+        }
        return false;
     }
 

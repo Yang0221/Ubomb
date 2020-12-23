@@ -131,7 +131,13 @@ public final class GameEngine {
 
     private void update(long now) {
         player.update(now);
-
+        
+        if(game.getWorld().hasChanged()){
+            sprites.forEach(Sprite::render);
+            sprites.clear();
+            initialize(stage,game);
+            game.getWorld().setchanged(false); 
+        }
         if (player.isAlive() == false) {
             gameLoop.stop();
             showMessage("Perdu!", Color.RED);

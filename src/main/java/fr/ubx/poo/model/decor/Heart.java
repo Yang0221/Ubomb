@@ -7,10 +7,12 @@ public class Heart extends Decor {
     public String toString() {
         return "Heart";
     }
-
-	protected boolean isObstacle() {
-		return false;
-	}
+    protected boolean isBox(){
+        return false;
+    }
+    protected boolean isCoeur(){
+        return true;
+    }
 
     
 }

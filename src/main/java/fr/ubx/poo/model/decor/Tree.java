@@ -10,7 +10,11 @@ public class Tree extends Decor {
     public String toString() {
         return "Tree";
     }
-	protected boolean isObstacle() {
-		return true;
-	}
+    protected boolean isBox(){
+        return false;
+    }
+    protected boolean isCoeur(){
+        return false;
+    }
+
 }

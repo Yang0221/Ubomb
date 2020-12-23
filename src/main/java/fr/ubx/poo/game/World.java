@@ -14,6 +14,14 @@ public class World {
     private final Map<Position, Decor> grid;
     private final WorldEntity[][] raw;
     public final Dimension dimension;
+    private boolean changed=false;
+    
+    public boolean hasChanged(){
+        return changed;
+    }
+    public void setchanged(boolean a){
+        this.changed=a;
+    } 
 
     public World(WorldEntity[][] raw) {
         this.raw = raw;
