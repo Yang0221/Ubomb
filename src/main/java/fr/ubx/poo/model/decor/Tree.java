@@ -22,5 +22,8 @@ public class Tree extends Decor {
     protected boolean isDoorClosed(){
         return false;
     }
+    protected boolean isMonster(){
+        return false;
+    }
 
 }

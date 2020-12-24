@@ -40,6 +40,8 @@ public class WorldBuilder {
                 return new Key();
             case DoorNextClosed:
                 return new DoorClosed();
+            case Monster:
+                return new Monster();
             default:
                 return null;
         }

@@ -20,5 +20,8 @@ public class DoorClosed extends Decor {
     protected boolean isDoorClosed(){
         return true;
     }
+    protected boolean isMonster(){
+        return false;
+    }
 
 }
