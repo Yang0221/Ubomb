@@ -16,7 +16,7 @@ public abstract class Decor extends Entity {
   protected abstract boolean isKey();
   protected abstract boolean isDoorClosed();
   protected abstract boolean isMonster();
-  
+  protected abstract boolean isPrincess();
   public boolean y_box() {
 		return isBox();
   }
@@ -32,5 +32,7 @@ public abstract class Decor extends Entity {
   public boolean y_monster(){
     return isMonster();
   }
-
+  public boolean y_princess(){
+    return isPrincess();
+  }
 }

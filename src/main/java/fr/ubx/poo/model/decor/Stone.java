@@ -24,5 +24,8 @@ public class Stone extends Decor {
     protected boolean isMonster(){
         return false;
     }
+    protected boolean isPrincess(){
+        return false;
+    }
 
 }

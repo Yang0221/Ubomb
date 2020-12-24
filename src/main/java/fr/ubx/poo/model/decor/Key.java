@@ -23,4 +23,7 @@ public class Key extends Decor {
     protected boolean isMonster(){
         return false;
     }
+    protected boolean isPrincess(){
+        return false;
+    }
 }

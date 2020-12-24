@@ -21,4 +21,7 @@ public class Princess extends Decor {
     protected boolean isMonster(){
         return false;
     }
+    protected boolean isPrincess(){
+        return true;
+    }
 }

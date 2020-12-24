@@ -56,7 +56,10 @@ public class Player extends GameObject implements Movable {
     public void removeKey(){
         this.keys -= 1 ;
     }
-
+    ///////WINNER////////
+    public void setWinner(){
+    	this.winner=true;
+    } 
     public void requestMove(Direction direction) {
         if (direction != this.direction) {
             this.direction = direction;
@@ -95,6 +98,9 @@ public class Player extends GameObject implements Movable {
             else if(decor.y_monster()){
                 removeLive();
                 return true;
+            }
+            else if(decor.y_princess()){
+                setWinner();
             }
             else
                 return false;

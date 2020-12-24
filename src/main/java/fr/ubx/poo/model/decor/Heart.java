@@ -22,6 +22,9 @@ public class Heart extends Decor {
     protected boolean isMonster(){
         return false;
     }
+    protected boolean isPrincess(){
+        return false;
+    }
 
     
 }
