@@ -28,6 +28,11 @@ public final class SpriteFactory {
             return new SpriteDecor(layer, factory.get(BOX), position);
         if (decor instanceof Heart)
             return new SpriteDecor(layer, factory.get(HEART), position);
+        if (decor instanceof DoorClosed)
+            return new SpriteDecor(layer, factory.get(DOOR_CLOSED), position);
+        if (decor instanceof Key)
+            return new SpriteDecor(layer, factory.get(KEY), position);
+        
         throw new RuntimeException("Unsupported sprite for decor " + decor);
     }
 

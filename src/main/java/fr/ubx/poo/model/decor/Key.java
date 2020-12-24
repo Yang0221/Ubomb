@@ -1,10 +1,12 @@
+
+
 package fr.ubx.poo.model.decor;
 
-public class Princess extends Decor {
 
+public class Key extends Decor {
     @Override
     public String toString() {
-        return "Princess";
+        return "Key";
     }
     protected boolean isBox(){
         return false;
@@ -13,7 +15,7 @@ public class Princess extends Decor {
         return false;
     }
     protected boolean isKey(){
-        return false;
+        return true;
     }
     protected boolean isDoorClosed(){
         return false;

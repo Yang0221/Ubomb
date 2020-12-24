@@ -36,6 +36,10 @@ public class WorldBuilder {
                 return new Box();
             case Heart:
                 return new Heart();
+            case Key:
+                return new Key();
+            case DoorNextClosed:
+                return new DoorClosed();
             default:
                 return null;
         }

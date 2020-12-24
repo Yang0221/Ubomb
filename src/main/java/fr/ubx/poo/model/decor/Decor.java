@@ -13,12 +13,19 @@ public abstract class Decor extends Entity {
     
   protected abstract boolean isBox();
   protected abstract boolean isCoeur();
-  
+  protected abstract boolean isKey();
+  protected abstract boolean isDoorClosed();
   public boolean y_box() {
 		return isBox();
   }
   public boolean y_coeur(){
     return isCoeur();
+  }
+  public boolean y_doorc(){
+    return isDoorClosed();
+  }
+  public boolean y_key(){
+    return isKey();
   }
 
 }

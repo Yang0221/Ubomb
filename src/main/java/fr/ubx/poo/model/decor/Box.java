@@ -12,5 +12,11 @@ public class Box extends Decor {
     protected boolean isCoeur(){
         return false;
     }
+    protected boolean isKey(){
+        return false;
+    }
+    protected boolean isDoorClosed(){
+        return false;
+    }
     
 }
