@@ -11,42 +11,51 @@ import fr.ubx.poo.model.go.GameObject;
 import fr.ubx.poo.game.Game;
 import fr.ubx.poo.game.World;
 
-import fr.ubx.poo.model.decor.Decor;
-import fr.ubx.poo.model.decor.Box;
-import fr.ubx.poo.model.decor.Tree;
-import fr.ubx.poo.model.decor.Stone;
-import fr.ubx.poo.model.decor.Heart;
+import fr.ubx.poo.model.decor.*;
+
 
 public class Player extends GameObject implements Movable {
 
-	private final boolean alive = true;
+    private final boolean alive = true;
     Direction direction;
     private boolean moveRequested = false;
     private int lives = 3;
+    private int keys = 1;
     private boolean winner;
 
     public Player(Game game, Position position) {
         super(game, position);
         this.direction = Direction.S;
         this.lives = game.getInitPlayerLives();
+        this.keys=game.getInitKeys();
     }
 
-    public int getLives() {
-        return lives;
-    }
+    
 
     public Direction getDirection() {
         return direction;
     }
-    
+    ////////LIVES////////
+    public int getLives() {
+        return lives;
+    }
     public void addLives(){
         this.lives += 1 ;
     }
 
-    public void removeLives(){
+    public void removeLive(){
         this.lives -= 1 ;
     } 
-
+    //////KEY////////////
+    public int getKeys(){
+        return keys;
+    }
+    public void addKey(){
+        this.keys += 1 ;
+    }
+    public void removeKey(){
+        this.keys -= 1 ;
+    }
 
     public void requestMove(Direction direction) {
         if (direction != this.direction) {
@@ -55,7 +64,7 @@ public class Player extends GameObject implements Movable {
         moveRequested = true;
     }
 
-    @Override
+    @Override   
     public boolean canMove(Direction direction) {
         Position nextPos = direction.nextPosition(getPosition());
         Position boxPos= direction.nextPosition(nextPos);
@@ -77,6 +86,12 @@ public class Player extends GameObject implements Movable {
                     game.getWorld().setchanged(true);
                     return true;
             }
+            else if(decor.y_key()){
+                addKey();
+                game.getWorld().clear(nextPos);
+                game.getWorld().setchanged(true);  
+                return true;
+            }
             else
                 return false;
         }
@@ -84,7 +99,6 @@ public class Player extends GameObject implements Movable {
     }
 
     public void doMove(Direction direction) {
-  
         Position nextPos = direction.nextPosition(getPosition());
         setPosition(nextPos);
     }
@@ -103,7 +117,10 @@ public class Player extends GameObject implements Movable {
     }
 
     public boolean isAlive() {
-        return alive;
+        if(lives >0)
+            return alive;
+        else 
+            return false;
     }
 
 }
