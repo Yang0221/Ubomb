@@ -92,6 +92,10 @@ public class Player extends GameObject implements Movable {
                 game.getWorld().setchanged(true);  
                 return true;
             }
+            else if(decor.y_monster()){
+                removeLive();
+                return true;
+            }
             else
                 return false;
         }
