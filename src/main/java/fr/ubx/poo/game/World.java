@@ -24,7 +24,7 @@ public class World {
     } 
 
     public World(WorldEntity[][] raw) {
-        this.raw = raw;
+        this.raw = WorldBuilder.creatEntities();
         dimension = new Dimension(raw.length, raw[0].length);
         grid = WorldBuilder.build(raw, dimension);
     }

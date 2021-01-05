@@ -46,7 +46,33 @@ public enum WorldEntity {
     private boolean acceptCode(char code) {
         return this.code == code;
     }
-
+    public static WorldEntity creat(char c){
+        switch (c){
+            case '_':
+                return Empty;
+            case 'B':
+                return Box;
+            case 'H':
+                return Heart;
+            case 'K':
+                return Key;
+            case 'M':
+                return Monster;
+            case 'n':
+                return DoorNextClosed;
+            case 'P':
+                return Player;
+            case 'S':
+                return Stone;
+            case 'T':
+                return Tree;
+            case 'W':
+                return Princess;
+            default:
+                return Empty;
+                
+        }
+    }
     @Override
     public String toString() {
         return ""+code;

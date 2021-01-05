@@ -22,7 +22,8 @@ public class Game {
     public int initKeys;
 
     public Game(String worldPath) {
-        world = new WorldStatic();
+    	world = new World() ;
+        //world= new WorldStatic();
         this.worldPath = worldPath;
         loadConfig(worldPath);
         Position positionPlayer = null;
