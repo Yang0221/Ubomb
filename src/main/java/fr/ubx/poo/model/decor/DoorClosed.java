@@ -1,4 +1,6 @@
-
+/*
+ * Copyright (c) 2020. Laurent Réveillère
+ */
 
 package fr.ubx.poo.model.decor;
 

@@ -2,7 +2,7 @@ package fr.ubx.poo.game;
 
 import static fr.ubx.poo.game.WorldEntity.*;
 
-public class WorldStatic extends World {
+public class WorldStatic  {
     private static final WorldEntity[][] mapEntities =
             {
                     {Stone, Empty, Heart, Empty, Empty, Empty, Empty, Empty, Empty, Empty, BombRangeDec, Empty},
@@ -19,7 +19,5 @@ public class WorldStatic extends World {
                     {Empty, DoorNextClosed, Empty, Empty, Empty, Empty, Empty, Empty, Monster, Empty, Empty, Empty},
                     {Empty, BombNumberDec, Empty, Empty, Empty, Empty, Empty, Empty, BombNumberInc, Empty, Empty, Princess}
             };
-    public WorldStatic() {
-        super(mapEntities);
-    }
+    //public WorldStatic() { super(mapEntities);}
 }

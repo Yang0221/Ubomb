@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2020. Laurent Réveillère
- */
-
 package fr.ubx.poo.game;
 
 import fr.ubx.poo.model.decor.Decor;
@@ -14,20 +10,21 @@ public class World {
     private final Map<Position, Decor> grid;
     private final WorldEntity[][] raw;
     public final Dimension dimension;
-    private boolean changed=false;
+    private boolean changed=true;  //si un decor change sa position , on recharge le world
     
+    public  World(String path) {
+        this.raw = WorldBuilder.creatEntities(path); //on crée raw 
+        dimension = new Dimension(raw.length, raw[0].length);
+        grid = WorldBuilder.build(raw, dimension);
+    }
+
+    //////CHANGED////////
     public boolean hasChanged(){
         return changed;
     }
     public void setchanged(boolean a){
         this.changed=a;
     } 
-
-    public World(WorldEntity[][] raw) {
-        this.raw = WorldBuilder.creatEntities();
-        dimension = new Dimension(raw.length, raw[0].length);
-        grid = WorldBuilder.build(raw, dimension);
-    }
 
     public Position findPlayer() throws PositionNotFoundException {
         for (int x = 0; x < dimension.width; x++) {

@@ -21,6 +21,9 @@ public class Box extends Decor {
     protected boolean isMonster(){
         return false;
     }
+    public boolean y_monster(){
+    return isMonster();
+    }
     protected boolean isPrincess(){
         return false;
     }

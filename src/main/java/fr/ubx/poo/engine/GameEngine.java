@@ -1,13 +1,10 @@
-/*
- * Copyright (c) 2020. Laurent Réveillère
- */
-
 package fr.ubx.poo.engine;
 
 import fr.ubx.poo.game.Direction;
 import fr.ubx.poo.view.sprite.Sprite;
 import fr.ubx.poo.view.sprite.SpriteFactory;
 import fr.ubx.poo.game.Game;
+import fr.ubx.poo.game.World;
 import fr.ubx.poo.model.go.character.Player;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -131,12 +128,12 @@ public final class GameEngine {
 
     private void update(long now) {
         player.update(now);
-        
+        //si Changed=true 
         if(game.getWorld().hasChanged()){
-            sprites.forEach(Sprite::render);
+            sprites.forEach(Sprite::render);  
             sprites.clear();
-            initialize(stage,game);
-            game.getWorld().setchanged(false); 
+            initialize(stage,game);//creer un nouveau world 
+            game.getWorld().setchanged(false);  // changed = false 
         }
         if (player.isAlive() == false) {
             gameLoop.stop();
@@ -146,7 +143,7 @@ public final class GameEngine {
             gameLoop.stop();
             showMessage("Gagné", Color.BLUE);
         }
-    }
+    }  
 
     private void render() {
         sprites.forEach(Sprite::render);

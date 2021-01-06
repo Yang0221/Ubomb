@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2020. Laurent Réveillère
- */
-
 package fr.ubx.poo.game;
 
 
@@ -22,14 +18,15 @@ public class Game {
     public int initKeys;
 
     public Game(String worldPath) {
-    	world = new World() ;
         //world= new WorldStatic();
         this.worldPath = worldPath;
-        loadConfig(worldPath);
+        world = new World(this.worldPath) ;
+        loadConfig(this.worldPath);
         Position positionPlayer = null;
         try {
             positionPlayer = world.findPlayer();
             player = new Player(this, positionPlayer);
+            System.out.println("+");
         } catch (PositionNotFoundException e) {
             System.err.println("Position not found : " + e.getLocalizedMessage());
             throw new RuntimeException(e);
@@ -43,7 +40,6 @@ public class Game {
     public int getInitKeys(){
         return initKeys;
     }
-
     private void loadConfig(String path) {
         try (InputStream input = new FileInputStream(new File(path, "config.properties"))) {
             Properties prop = new Properties();
@@ -57,7 +53,7 @@ public class Game {
     }
 
     public World getWorld() {
-        return world;
+        return this.world;
     }
 
     public Player getPlayer() {

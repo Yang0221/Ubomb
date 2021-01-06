@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2020. Laurent Réveillère
- */
-
 package fr.ubx.poo.engine;
 
 import static fr.ubx.poo.view.image.ImageResource.*;

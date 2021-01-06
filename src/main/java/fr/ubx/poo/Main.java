@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2020. Laurent Réveillère
- */
 
 package fr.ubx.poo;
 
@@ -17,6 +14,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         ImageFactory.getInstance().load();
         String path = getClass().getResource("/sample").getFile();
+        System.out.println(path);
         Game game = new Game(path);
         GameEngine engine = new GameEngine("UBomb", game, stage);
         engine.start();

@@ -10,52 +10,63 @@ import java.util.ArrayList;
 import fr.ubx.poo.game.WorldEntity;
 import static fr.ubx.poo.game.WorldEntity.*;
 import javafx.application.Application;
+import fr.ubx.poo.game.Game;
 
-public class WorldBuilder {
+public class WorldBuilder  {
     private final Map<Position, Decor> grid = new Hashtable<>();
 
-    private WorldBuilder() {//只有这一行是原本的代码
-    }
+    //private WorldBuilder() {}
 
-    public static WorldEntity[][] creatEntities(){
-        WorldEntity[][] raw={};
+    //////creatEntities permet de creer un raw à paritir du diffrent fichiers
+    public static WorldEntity[][] creatEntities(String path){
+        WorldEntity[][] raw={
+            {Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty},
+            {Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty},
+            {Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty},
+            {Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty},
+            {Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty},
+            {Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty},
+            {Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty},
+            
+        };
         try{
-        	String path = WorldBuilder.class.getResource("/leve1.txt").getFile();
-            FileInputStream file=new FileInputStream(path);
-            ObjectInputStream in =new ObjectInputStream(file);
-        
-        Object a=in.readObject();
-        int j=0,i=0;
-        while((int) a!=-1){
-            if((int) a ==10){ // ‘\n’=10 en intger
+            File filename = new File(path,"monde1.txt"); // à changer pour passer au niveau suivant
+    
+		    InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));
+            BufferedReader in = new BufferedReader(reader); 
+
+		    String line = in.readLine(); //on lit le fichier une ligne par ligne
+
+            int len=line.length();  // len est la longeur du world
+            int i=-1,j=-1;  
+            char c;
+		    while (line!=null) {
                 j++;
                 i=0;
+                while(i<len){
+                    c=line.charAt(i);  
+                    raw[j][i]=WorldEntity.fromCode(c).get();
+                    // on change le type char ver WorldEntity un caractère par caractère
+                    i++;  
+                }
+                line = in.readLine();
             }
-            char c=(char) a;
-            WorldEntity h= creat(c);
-            raw[i][j]=h;
-            i++;
-            a=in.readObject();
+            in.close();
         }
-        in.close();
-        
-    }
-    catch(FileNotFoundException e ){
-        e.printStackTrace();
-    }
-    catch(NullPointerException e){
-        e.printStackTrace();
-    }
-    catch (IOException e){
-        e.printStackTrace();
-    }
-    catch(ClassNotFoundException e){
-        e.printStackTrace();
-    }
-    return raw;
+        catch(FileNotFoundException e ){
+            e.printStackTrace();
+        }
+        catch(NullPointerException e){
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return raw;
     }
 
-///////////////////////////////////////////////////
+
+
     public static Map<Position, Decor> build(WorldEntity[][] raw, Dimension dimension) {
         WorldBuilder builder = new WorldBuilder();
         for (int x = 0; x < dimension.width; x++) {

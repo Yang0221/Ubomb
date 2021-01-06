@@ -26,4 +26,5 @@ public class Key extends Decor {
     protected boolean isPrincess(){
         return false;
     }
+
 }

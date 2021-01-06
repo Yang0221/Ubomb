@@ -58,8 +58,10 @@ public class Player extends GameObject implements Movable {
     }
     ///////WINNER////////
     public void setWinner(){
-    	this.winner=true;
+        this.winner=true;
     } 
+
+
     public void requestMove(Direction direction) {
         if (direction != this.direction) {
             this.direction = direction;
