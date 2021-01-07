@@ -1,14 +1,10 @@
-/*
- * Copyright (c) 2020. Laurent Réveillère
- */
-
 package fr.ubx.poo.model.decor;
 
 
-public class Tree extends Decor {
+public class DoorNextOpened extends Decor {
     @Override
     public String toString() {
-        return "Tree";
+        return "DoorNextOpened";
     }
     protected boolean isBox(){
         return false;
@@ -23,7 +19,7 @@ public class Tree extends Decor {
         return false;
     }
     protected boolean isDoorNextOpened(){
-        return false;
+        return true;
     }
     protected boolean isDoorPrevOpened(){
         return false;
@@ -36,3 +32,4 @@ public class Tree extends Decor {
     }
 
 }
+

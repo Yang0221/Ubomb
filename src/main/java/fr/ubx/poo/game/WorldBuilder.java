@@ -30,7 +30,7 @@ public class WorldBuilder  {
             
         };
         try{
-            File filename = new File(path,"monde1.txt"); // à changer pour passer au niveau suivant
+            File filename = new File(path,"level2.txt"); // à changer pour passer au niveau suivant
     
 		    InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));
             BufferedReader in = new BufferedReader(reader); 
@@ -95,7 +95,11 @@ public class WorldBuilder  {
             case Key:
                 return new Key();
             case DoorNextClosed:
-                return new DoorClosed();
+                return new DoorNextClosed();
+            case DoorNextOpened:
+                return new DoorNextOpened();  
+            case DoorPrevOpened:
+                return new DoorPrevOpened(); 
             case Monster:
                 return new Monster();
             default:

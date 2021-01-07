@@ -17,7 +17,13 @@ public class Key extends Decor {
     protected boolean isKey(){
         return true;
     }
-    protected boolean isDoorClosed(){
+    protected boolean isDoorNextClosed(){
+        return false;
+    }
+    protected boolean isDoorNextOpened(){
+        return false;
+    }
+    protected boolean isDoorPrevOpened(){
         return false;
     }
     protected boolean isMonster(){

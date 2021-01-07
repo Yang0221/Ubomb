@@ -1,14 +1,10 @@
-/*
- * Copyright (c) 2020. Laurent Réveillère
- */
-
 package fr.ubx.poo.model.decor;
 
 
-public class DoorClosed extends Decor {
+public class DoorPrevOpened extends Decor {
     @Override
     public String toString() {
-        return "DoorClosed";
+        return "DoorPrevOpened";
     }
     protected boolean isBox(){
         return false;
@@ -19,7 +15,13 @@ public class DoorClosed extends Decor {
     protected boolean isKey(){
         return false;
     }
-    protected boolean isDoorClosed(){
+    protected boolean isDoorNextClosed(){
+        return false;
+    }
+    protected boolean isDoorNextOpened(){
+        return false;
+    }
+    protected boolean isDoorPrevOpened(){
         return true;
     }
     protected boolean isMonster(){
@@ -30,3 +32,4 @@ public class DoorClosed extends Decor {
     }
 
 }
+
