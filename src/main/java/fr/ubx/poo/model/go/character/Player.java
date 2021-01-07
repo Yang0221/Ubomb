@@ -68,7 +68,15 @@ public class Player extends GameObject implements Movable {
         }
         moveRequested = true;
     }
-
+    public void open_Door(){
+        Position nextPos = this.direction.nextPosition(getPosition());
+        Decor decor=game.getWorld().get(nextPos);
+        if(decor.y_door_nextC()&&getKeys()>0){
+            game.getWorld().set(nextPos,new DoorNextOpened());
+            game.getWorld().setchanged(true);
+            removeKey();
+        }
+    }
     @Override   
     public boolean canMove(Direction direction) {
         Position nextPos = direction.nextPosition(getPosition());
