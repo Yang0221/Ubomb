@@ -13,7 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         ImageFactory.getInstance().load();
-        String path = getClass().getResource("/sample").getFile();
+        String path = getClass().getResource("/sample").getFile().replaceAll("%20"," ");
         System.out.println(path);
         Game game = new Game(path);
         GameEngine engine = new GameEngine("UBomb", game, stage);

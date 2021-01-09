@@ -99,9 +99,7 @@ public class WorldBuilder  {
             case DoorNextOpened:
                 return new DoorNextOpened();  
             case DoorPrevOpened:
-                return new DoorPrevOpened(); 
-            case Monster:
-                return new Monster();
+                return new DoorPrevOpened();
             case BombNumberInc:
             	return new BombNumberInc();
             case BombNumberDec:
