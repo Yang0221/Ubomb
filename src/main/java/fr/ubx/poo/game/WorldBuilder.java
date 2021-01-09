@@ -102,8 +102,17 @@ public class WorldBuilder  {
                 return new DoorPrevOpened(); 
             case Monster:
                 return new Monster();
+            case BombNumberInc:
+            	return new BombNumberInc();
+            case BombNumberDec:
+            	return new BombNumberDec();
+            case BombRangeInc:
+            	return new BombRangeInc();
+            case BombRangeDec:
+            	return new BombRangeDec();
             case Bomb:
                 return new Bomb();
+            
             default:
                 return null;
         }

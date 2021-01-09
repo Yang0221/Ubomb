@@ -30,6 +30,18 @@ public class Bomb extends Decor {
     protected boolean isPrincess(){
         return false;
     }
+    protected boolean isBombRangeInc(){
+        return false;
+    }
+    protected boolean isBombRangeDec(){
+        return false;
+    }
+    protected boolean isBombNumberInc(){
+        return false;
+    }
+    protected boolean isBombNumberDec(){
+        return false;
+    }
     protected boolean isBomb(){
         return true;
     }

@@ -11,7 +11,8 @@ public class World {
     private final WorldEntity[][] raw;
     public final Dimension dimension;
     private boolean changed=true;  //si un decor change sa position , on recharge le world
-    
+    private int rangeValue=1;
+    private int nbBomb=1;
     public  World(String path) {
         this.raw = WorldBuilder.creatEntities(path); //on crée raw 
         dimension = new Dimension(raw.length, raw[0].length);
@@ -24,8 +25,27 @@ public class World {
     }
     public void setchanged(boolean a){
         this.changed=a;
-    } 
-
+    }
+    //////RANGEVALUE//////
+    public int getRange() {
+    	return this.rangeValue;
+    }
+    public void addRange() {
+    	this.rangeValue++;
+    }
+    public void removeRange() {
+    	this.rangeValue--;
+    }
+    //////NBBOMB//////
+    public int getNbBomb() {
+    	return this.nbBomb;
+    }
+    public void addNbBomb() {
+    	this.nbBomb++;
+    }
+    public void removeNbBomb() {
+    	this.nbBomb--;
+    }
     public Position findPlayer() throws PositionNotFoundException {
         for (int x = 0; x < dimension.width; x++) {
             for (int y = 0; y < dimension.height; y++) {

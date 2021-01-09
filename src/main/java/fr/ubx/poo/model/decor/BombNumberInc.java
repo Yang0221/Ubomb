@@ -1,21 +1,19 @@
-
-
 package fr.ubx.poo.model.decor;
 
-
-public class Key extends Decor {
+public class BombNumberInc extends Decor {
+    
     @Override
     public String toString() {
-        return "Key";
+        return "BombNumberInc";
     }
-    protected boolean isBox(){
+    public boolean isBox(){
         return false;
     }
     protected boolean isCoeur(){
         return false;
     }
     protected boolean isKey(){
-        return true;
+        return false;
     }
     protected boolean isDoorNextClosed(){
         return false;
@@ -39,7 +37,7 @@ public class Key extends Decor {
         return false;
     }
     protected boolean isBombNumberInc(){
-        return false;
+        return true;
     }
     protected boolean isBombNumberDec(){
         return false;
@@ -47,5 +45,4 @@ public class Key extends Decor {
     protected boolean isBomb(){
         return false;
     }
-
 }
