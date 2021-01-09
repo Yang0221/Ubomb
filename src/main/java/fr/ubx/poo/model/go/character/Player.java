@@ -21,6 +21,7 @@ public class Player extends GameObject implements Movable {
     private boolean moveRequested = false;
     private int lives = 3;
     private int keys = 1;
+    private int bombs = 3;
     private boolean winner;
 
     public Player(Game game, Position position) {
@@ -56,6 +57,16 @@ public class Player extends GameObject implements Movable {
     public void removeKey(){
         this.keys -= 1 ;
     }
+    /////BOMB///////////
+    public int getBombs(){
+        return this.bombs;
+    }
+    public void addBombs(){
+        this.bombs++;
+    }
+    public void removeBombs(){
+        this.bombs--;
+    }
     ///////WINNER////////
     public void setWinner(){
         this.winner=true;
@@ -75,6 +86,14 @@ public class Player extends GameObject implements Movable {
             game.getWorld().set(nextPos,new DoorNextOpened());
             game.getWorld().setchanged(true);
             removeKey();
+        }
+    }
+    public void put_Bomb(){
+        Position bombPos = getPosition();
+        if(getBombs()>0){
+            game.getWorld().set(bombPos,new Bomb());
+            game.getWorld().setchanged(true);
+            removeBombs();
         }
     }
     @Override   
@@ -111,6 +130,9 @@ public class Player extends GameObject implements Movable {
             }
             else if(decor.y_princess()){
                 setWinner();
+            }
+            else if(decor.y_bomb()){
+                return true;
             }
             else
                 return false;

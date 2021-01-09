@@ -30,6 +30,9 @@ public class Princess extends Decor {
     protected boolean isPrincess(){
         return true;
     }
+    protected boolean isBomb(){
+        return false;
+    }
 
 
 }

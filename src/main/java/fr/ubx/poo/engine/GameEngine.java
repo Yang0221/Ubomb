@@ -106,6 +106,9 @@ public final class GameEngine {
         if (input.isKey()){
             player.open_Door();
         }
+        if (input.isBomb()){
+            player.put_Bomb();
+        }
         input.clear();
     }
 

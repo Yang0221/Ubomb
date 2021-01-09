@@ -38,6 +38,8 @@ public final class SpriteFactory {
             return new SpriteDecor(layer, factory.get(KEY), position);
         if (decor instanceof Monster)
             return new SpriteDecor(layer, factory.get(MONSTER), position);
+        if (decor instanceof Bomb)
+            return new SpriteDecor(layer, factory.get(BOMB), position);
         throw new RuntimeException("Unsupported sprite for decor " + decor);
     }
 

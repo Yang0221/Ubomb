@@ -30,5 +30,7 @@ public class DoorNextClosed extends Decor {
     protected boolean isPrincess(){
         return false;
     }
-
+    protected boolean isBomb(){
+        return false;
+    }
 }
