@@ -85,6 +85,9 @@ public final class GameEngine {
 
     }
 
+    /***
+     * Ajout d'un timer pour réduire la vitesse de déplacment des monstres
+     */
     java.util.Timer Timer = new java.util.Timer();
     java.util.TimerTask task = new java.util.TimerTask(){
         public void run(){

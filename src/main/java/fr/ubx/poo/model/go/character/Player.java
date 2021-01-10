@@ -140,7 +140,9 @@ public class Player extends GameObject implements Movable {
                 removeLive();
                 return true;
             }
-
+            else if (decor.y_door_nextO()){
+                return true;
+            }
             else if(decor.y_princess()){
                 setWinner();
             }
