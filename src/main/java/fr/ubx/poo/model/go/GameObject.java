@@ -15,6 +15,8 @@ public abstract class GameObject extends Entity {
     protected final Game game;
     private Position position;
 
+    protected abstract boolean isMonsterSprite();
+
 
     public Position getPosition() {
         return position;
@@ -27,5 +29,9 @@ public abstract class GameObject extends Entity {
     public GameObject(Game game, Position position) {
         this.game = game;
         this.position = position;
+    }
+
+    public boolean y_monsterSprite(){
+        return isMonsterSprite();
     }
 }

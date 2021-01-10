@@ -57,15 +57,40 @@ public class World {
         throw new PositionNotFoundException("Player");
     }
 
-    public Position findMonster() throws PositionNotFoundException {
+    public boolean existe(Position P[], Position val){
+        for(int i = 0;i<P.length;i++){
+            if(val.equals(P[i])){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /***
+     * tab de taille arbitraire avec chaque valeur initialisé à null
+     * on suppose ici qu'on aura pas de level avec plus de 9 monstre
+     */
+    Position [] tab= new Position[]{null,null,null,null,null,null,null,null,null};
+
+    /***
+     * rempli le tableau tab des positions des monstre dans la grille
+     * @return un tableau de posotion où à chaque position se trouve un monstre
+     */
+
+    public Position[] findMonster() {
+        int i = 0;
         for (int x = 0; x < dimension.width; x++) {
             for (int y = 0; y < dimension.height; y++) {
                 if (raw[y][x] == WorldEntity.Monster) {
-                    return new Position(x, y);
+                    Position p = new Position(x,y);
+                    if(existe(tab,p)==false){
+                        tab[i] = p;
+                        i++;
+                    }
                 }
             }
         }
-        throw new PositionNotFoundException("Monster");
+        return tab;
     }
 
     public Decor get(Position position) {

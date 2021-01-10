@@ -12,9 +12,15 @@ import fr.ubx.poo.game.Game;
 import fr.ubx.poo.game.World;
 
 import fr.ubx.poo.model.decor.*;
+import fr.ubx.poo.view.sprite.Sprite;
+
+import java.util.List;
 
 
 public class Player extends GameObject implements Movable {
+    protected  boolean isMonsterSprite(){
+        return false;
+    }
 
     private final boolean alive = true;
     Direction direction;
@@ -98,7 +104,7 @@ public class Player extends GameObject implements Movable {
     /****
      *
      * @param direction
-     * @return un boolean true = le joueur bouger, false = il ne peut pas bouger
+     * @return un boolean true = le joueur peut bouger, false = il ne peut pas bouger
      */
     @Override   
     public boolean canMove(Direction direction) {
@@ -107,6 +113,8 @@ public class Player extends GameObject implements Movable {
         if(nextPos.inside(game.getWorld().dimension)){
             Decor decor=game.getWorld().get(nextPos);
             Decor boxNext=game.getWorld().get(boxPos);
+            List<Monster>  m = game.getMonsters();
+            m.stream().filter(monster -> monster.getPosition().equals(nextPos)).forEach(monster -> removeLive());
             if(decor == null )//si la case nextPos est vide
                 return true;
             else if(decor.y_coeur()){ //si nextPos est coeur  
@@ -132,6 +140,7 @@ public class Player extends GameObject implements Movable {
                 removeLive();
                 return true;
             }
+
             else if(decor.y_princess()){
                 setWinner();
             }
@@ -170,6 +179,11 @@ public class Player extends GameObject implements Movable {
 
     public void doMove(Direction direction) {
         Position nextPos = direction.nextPosition(getPosition());
+        try{
+            Thread.sleep(0);
+        }catch(Exception e){
+            System.exit(0);
+        }
         setPosition(nextPos);
     }
 

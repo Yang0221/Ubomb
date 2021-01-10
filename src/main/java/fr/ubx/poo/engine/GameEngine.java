@@ -1,6 +1,7 @@
 package fr.ubx.poo.engine;
 
 import fr.ubx.poo.game.Direction;
+import fr.ubx.poo.game.Position;
 import fr.ubx.poo.view.sprite.Sprite;
 import fr.ubx.poo.view.sprite.SpriteFactory;
 import fr.ubx.poo.game.Game;
@@ -30,21 +31,22 @@ public final class GameEngine {
     private final String windowTitle;
     private final Game game;
     private final Player player;
-    private final Monster monster;
     private final List<Sprite> sprites = new ArrayList<>();
+    private final List<Monster> monsters;
     private final List<Sprite> spritesM = new ArrayList<>();
     private StatusBar statusBar;
     private Pane layer;
     private Input input;
     private Stage stage;
     private Sprite spritePlayer;
-    private Sprite spriteMonster;
+    Position position;
+    //private Sprite spriteMonster;
 
     public GameEngine(final String windowTitle, Game game, final Stage stage) {
         this.windowTitle = windowTitle;
         this.game = game;
+        this.monsters = game.getMonsters();
         this.player = game.getPlayer();
-        this.monster = game.getMonster();
         initialize(stage, game);
         buildAndSetGameLoop();
     }
@@ -70,16 +72,14 @@ public final class GameEngine {
         root.getChildren().add(layer);
         statusBar = new StatusBar(root, sceneWidth, sceneHeight, game);
         // Create decor sprites
-        game.getWorld().forEach( (pos,d) -> sprites.add(SpriteFactory.createDecor(layer, pos, d)));
+        game.getWorld().forEach((pos, d) -> sprites.add(SpriteFactory.createDecor(layer, pos, d)));
         spritePlayer = SpriteFactory.createPlayer(layer, player);
         /***
          * Tenatative de création de plusieurs monstres
          */
-        for(int i = 0; i<3;i++) {
-            spritesM.add(SpriteFactory.createMonster(layer, monster));
-        }
 
 
+        monsters.forEach(monster -> spritesM.add(SpriteFactory.createMonster(layer,monster)));
 
     }
 
@@ -148,13 +148,13 @@ public final class GameEngine {
 
     private void update(long now) {
         player.update(now);
-        monster.update(now);
-        //si Changed=true 
+        monsters.forEach(monster -> monster.update(now));
+        //si Changed=true
         if(game.getWorld().hasChanged()){
-            sprites.forEach(Sprite::render);  
+            sprites.forEach(Sprite::render);
             sprites.clear();
-            initialize(stage,game);//creer un nouveau world 
-            game.getWorld().setchanged(false);  // changed = false 
+            initialize(stage,game);//creer un nouveau world
+            game.getWorld().setchanged(false);  // changed = false
         }
         if (player.isAlive() == false) {
             gameLoop.stop();
@@ -164,14 +164,12 @@ public final class GameEngine {
             gameLoop.stop();
             showMessage("Gagné", Color.BLUE);
         }
-    }  
+    }
 
     private void render() {
         sprites.forEach(Sprite::render);
-        for(Sprite M: spritesM) {
-            M.render();
-        }
         // last rendering to have player in the foreground
+        spritesM.forEach(Sprite::render);
         spritePlayer.render();
 
     }

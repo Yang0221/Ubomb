@@ -11,9 +11,13 @@ import fr.ubx.poo.model.go.GameObject;
 public class Monster extends GameObject implements Movable {
     private Direction direction;
 
+    protected boolean isMonsterSprite(){
+        return true;
+    }
+
 
     public Direction getDirection() {
-        return direction;
+        return this.direction;
     }
 
     public Monster(Game game, Position position) {
@@ -23,7 +27,14 @@ public class Monster extends GameObject implements Movable {
 
     @Override
     public boolean canMove(Direction direction){
-        return true;
+        Position nextPos = direction.nextPosition(getPosition());
+        if(nextPos.inside(game.getWorld().dimension)) {
+            Decor decor = game.getWorld().get(nextPos);
+            if (decor == null) {//si la case nextPos est vide
+               return true;
+            }
+        }
+        return false;
     }
 
     /***
@@ -33,20 +44,20 @@ public class Monster extends GameObject implements Movable {
 
     @Override
     public void doMove(Direction direction) {
-        direction = direction.random();
         Position nextPos = direction.nextPosition(getPosition());
-        if(nextPos.inside(game.getWorld().dimension)) {
-            Decor decor = game.getWorld().get(nextPos);
-            if (decor == null) {//si la case nextPos est vide
-                setPosition(nextPos);
-            }
+        try{
+            Thread.sleep(100);
+        }catch(Exception e){
+            System.exit(0);
         }
+        setPosition(nextPos);
     }
 
 
     public void update(long now) {
-        if (canMove(direction)) {
-            doMove(direction);
+        this.direction = Direction.random();
+        if (canMove(this.direction)) {
+            doMove(this.direction);
         }
     }
 

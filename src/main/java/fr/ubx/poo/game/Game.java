@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import fr.ubx.poo.model.go.character.Monster;
@@ -14,10 +16,11 @@ public class Game {
 
     private final World world;
     private final Player player;
-    private final Monster monster;
+    private final List<Monster> monsters = new ArrayList<>();
     private final String worldPath;
     public int initPlayerLives;
     public int initKeys;
+
 
     public Game(String worldPath) {
         //world= new WorldStatic();
@@ -28,9 +31,12 @@ public class Game {
         Position positionMonster = null;
         try {
             positionPlayer = world.findPlayer();
-            positionMonster = world.findMonster();
             player = new Player(this, positionPlayer);
-            monster = new Monster(this,positionMonster);
+            Position [] tab= world.findMonster();
+            for (int i = 0; i < tab.length; i++) {
+                if (tab[i]!=null)
+                monsters.add(new Monster(this,tab[i]));
+            }
             System.out.println("+");
         } catch (PositionNotFoundException e) {
             System.err.println("Position not found : " + e.getLocalizedMessage());
@@ -65,8 +71,8 @@ public class Game {
         return this.player;
     }
 
-    public Monster getMonster(){
-        return this.monster;
+    public List<Monster> getMonsters(){
+        return this.monsters;
     }
 
 
