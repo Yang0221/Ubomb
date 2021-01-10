@@ -7,6 +7,7 @@ import fr.ubx.poo.model.decor.*;
 import fr.ubx.poo.game.Direction;
 import fr.ubx.poo.game.Game;
 import fr.ubx.poo.model.go.GameObject;
+import javax.swing.Timer;
 
 public class Monster extends GameObject implements Movable {
     private Direction direction;
@@ -22,7 +23,7 @@ public class Monster extends GameObject implements Movable {
 
     public Monster(Game game, Position position) {
         super(game, position);
-        this.direction = Direction.random();
+        this.direction = Direction.S;
     }
 
     @Override
@@ -45,16 +46,15 @@ public class Monster extends GameObject implements Movable {
     @Override
     public void doMove(Direction direction) {
         Position nextPos = direction.nextPosition(getPosition());
-        try{
-            Thread.sleep(100);
-        }catch(Exception e){
-            System.exit(0);
+        if(game.getPlayer().getPosition() == nextPos){
+            game.getPlayer().removeLive();
+
         }
         setPosition(nextPos);
     }
 
 
-    public void update(long now) {
+    public void update() {
         this.direction = Direction.random();
         if (canMove(this.direction)) {
             doMove(this.direction);

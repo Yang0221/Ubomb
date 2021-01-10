@@ -23,6 +23,8 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public final class GameEngine {
@@ -82,6 +84,14 @@ public final class GameEngine {
         monsters.forEach(monster -> spritesM.add(SpriteFactory.createMonster(layer,monster)));
 
     }
+
+    java.util.Timer Timer = new java.util.Timer();
+    java.util.TimerTask task = new java.util.TimerTask(){
+        public void run(){
+            monsters.forEach(monster -> monster.update());
+        }
+
+    };
 
     protected final void buildAndSetGameLoop() {
         gameLoop = new AnimationTimer() {
@@ -148,7 +158,7 @@ public final class GameEngine {
 
     private void update(long now) {
         player.update(now);
-        monsters.forEach(monster -> monster.update(now));
+        //monsters.forEach(monster -> monster.update());
         //si Changed=true
         if(game.getWorld().hasChanged()){
             sprites.forEach(Sprite::render);
@@ -175,6 +185,7 @@ public final class GameEngine {
     }
 
     public void start() {
+        Timer.scheduleAtFixedRate(task,1000,1000);
         gameLoop.start();
     }
 }

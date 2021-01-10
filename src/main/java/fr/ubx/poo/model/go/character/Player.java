@@ -179,11 +179,6 @@ public class Player extends GameObject implements Movable {
 
     public void doMove(Direction direction) {
         Position nextPos = direction.nextPosition(getPosition());
-        try{
-            Thread.sleep(0);
-        }catch(Exception e){
-            System.exit(0);
-        }
         setPosition(nextPos);
     }
 
