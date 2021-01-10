@@ -54,6 +54,13 @@ public final class SpriteFactory {
     public static Sprite createPlayer(Pane layer, Player player) {
         return new SpritePlayer(layer, player);
     }
+
+    /***
+     * fonction pour renvoyer un SpriteMonster
+     * @param layer
+     * @param monster
+     * @return Sprite (polymorphisme)
+     */
     public static Sprite createMonster(Pane layer, Monster monster) {
         return new SpriteMonster(layer, monster);
     }

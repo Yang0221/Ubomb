@@ -29,6 +29,12 @@ public class WorldBuilder  {
             {Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty},
             
         };
+        /***
+         * lecture et transcription des fichiers levels
+         * On lit le fichier ligne par ligne
+         * len = la longueur du world
+         * on change le type char vers WorldEntity un caractere par caractere
+         */
         try{
             File filename = new File(path,"level2.txt"); // à changer pour passer au niveau suivant
     

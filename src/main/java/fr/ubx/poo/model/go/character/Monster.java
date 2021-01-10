@@ -26,6 +26,12 @@ public class Monster extends GameObject implements Movable {
         return true;
     }
 
+    /***
+     * met à jour la position du monstre en fonction de si il peut bouger ou non
+     * @param direction la direction du monstre qui doit être random
+     */
+
+    @Override
     public void doMove(Direction direction) {
         direction = direction.random();
         Position nextPos = direction.nextPosition(getPosition());

@@ -35,7 +35,10 @@ public class Player extends GameObject implements Movable {
     public Direction getDirection() {
         return direction;
     }
-    ////////LIVES////////
+
+    /***
+     *Gestion des vies du player
+     */
     public int getLives() {
         return lives;
     }
@@ -45,8 +48,11 @@ public class Player extends GameObject implements Movable {
 
     public void removeLive(){
         this.lives -= 1 ;
-    } 
-    //////KEY////////////
+    }
+
+    /***
+     *Gestion des bonus keys
+     */
     public int getKeys(){
         return keys;
     }
@@ -56,8 +62,10 @@ public class Player extends GameObject implements Movable {
     public void removeKey(){
         this.keys -= 1 ;
     }
-   
-    ///////WINNER////////
+
+    /***
+     * gère l'état du jeu winner/loser
+     */
     public void setWinner(){
         this.winner=true;
     } 
@@ -86,6 +94,12 @@ public class Player extends GameObject implements Movable {
             game.getWorld().removeNbBomb();
         }
     }
+
+    /****
+     *
+     * @param direction
+     * @return un boolean true = le joueur bouger, false = il ne peut pas bouger
+     */
     @Override   
     public boolean canMove(Direction direction) {
         Position nextPos = direction.nextPosition(getPosition());

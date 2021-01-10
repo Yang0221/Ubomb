@@ -5,8 +5,11 @@ import fr.ubx.poo.model.Entity;
 /***
  * A decor is an element that does not know its own position in the grid.
  */
-public abstract class Decor extends Entity {  
-    
+public abstract class Decor extends Entity {
+
+  /***
+   *Ensemble de méthodes qui renvoient un boolean en focntion pour gérer les intéractions dnas le jeu
+   */
   protected abstract boolean isBox();
   protected abstract boolean isCoeur();
   protected abstract boolean isKey();
